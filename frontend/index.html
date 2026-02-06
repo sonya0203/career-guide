@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Guide - Find Your Perfect Career Path</title>
+    <meta name="description"
+        content="Answer simple questions. Take a quick test. Get personalized career recommendations.">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8fafc;
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* User Profile Section - Positioned at the end */
+        .user-profile-container {
+            position: relative;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            background: #f7fafc;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .user-profile:hover {
+            background: #edf2f7;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .user-name {
+            color: #2d3748;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Simple Logout Dropdown */
+        .logout-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            min-width: 150px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            border: 1px solid #e2e8f0;
+        }
+
+        .logout-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .logout-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: #e53e3e;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .logout-option:hover {
+            background: #fed7d7;
+        }
+
+        .logout-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .btn-hero {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-hero:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .illustration-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .illustration-container::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, #667eea, #764ba2, #667eea);
+            animation: rotate 10s linear infinite;
+        }
+
+        .illustration-container::after {
+            content: '';
+            position: absolute;
+            width: calc(100% - 4px);
+            height: calc(100% - 4px);
+            background: white;
+            border-radius: 18px;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .illustration-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .illustration-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .illustration-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1rem;
+            background: #f7fafc;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .step-item:hover {
+            transform: translateX(5px);
+            background: #edf2f7;
+        }
+
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .step-text h4 {
+            font-size: 1rem;
+            color: #2d3748;
+            margin-bottom: 0.25rem;
+        }
+
+        .step-text p {
+            font-size: 0.875rem;
+            color: #718096;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 5rem 2rem;
+            background-color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 3rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step-card {
+            background: #f7fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .step-description {
+            color: #718096;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #2d3748;
+            color: white;
+            padding: 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-left p {
+            color: #cbd5e0;
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-link {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .hero-title {
+                font-size: 2.75rem;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-container {
+                padding: 1rem;
+            }
+
+            .hero {
+                padding: 7rem 1rem 3rem;
+            }
+
+            .hero-title {
+                font-size: 2.25rem;
+            }
+
+            .illustration-container {
+                width: 300px;
+                height: 300px;
+            }
+
+            .user-profile {
+                margin-top: 0;
+            }
+
+            .logout-dropdown {
+                right: 0;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.875rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .step-card {
+                padding: 1.5rem;
+            }
+
+            .user-name {
+                display: none;
+            }
+
+            .user-profile {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <!-- Logo at the start -->
+            <div class="navbar-logo">
+                <div class="logo-icon">AI</div>
+                <span>AI Career Guide</span>
+            </div>
+
+            <!-- User Profile at the end -->
+            <div class="user-profile-container">
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar" id="userAvatar">N</div>
+                    <span class="user-name" id="userName">Nikita</span>
+                </div>
+
+                <!-- Simple Logout Dropdown -->
+                <div class="logout-dropdown" id="logoutDropdown">
+                    <div class="logout-option" id="logoutBtn">
+                        <div class="logout-icon">🚪</div>
+                        <span>Logout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Find Your Perfect Career Path with AI
+                </h1>
+                <p class="hero-description">
+                    Answer simple questions. Take a quick test. Get personalized career recommendations.
+                </p>
+                <a href="quiz.html" class="btn-hero">
+                    Take Career Test →
+                </a>
+            </div>
+
+            <div class="hero-image">
+                <div class="illustration-container">
+                    <div class="illustration-content">
+                        <h3 class="illustration-title">Your Career Journey</h3>
+                        <div class="illustration-steps">
+                            <div class="step-item">
+                                <div class="step-icon">1</div>
+                                <div class="step-text">
+                                    <h4>Enter Details</h4>
+                                    <p>Skills & Qualifications</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-icon">2</div>
+                                <div class="step-text">
+                                    <h4>Take Test</h4>
+                                    <p>Quick MCQ Assessment</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-icon">3</div>
+                                <div class="step-text">
+                                    <h4>Get Results</h4>
+                                    <p>AI Recommendations</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+
+            <div class="steps-grid">
+                <!-- Step 1 -->
+                <div class="step-card">
+                    <div class="step-number">
+                        <span>1</span>
+                    </div>
+                    <h3 class="step-title">Enter Your Details</h3>
+                    <p class="step-description">Qualification, Skills, Interests</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-card">
+                    <div class="step-number">
+                        <span>2</span>
+                    </div>
+                    <h3 class="step-title">Take a Quick MCQ Test</h3>
+                    <p class="step-description">Answer questions to help us understand you better</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-card">
+                    <div class="step-number">
+                        <span>3</span>
+                    </div>
+                    <h3 class="step-title">Get AI Career Recommendations</h3>
+                    <p class="step-description">Receive personalized career paths tailored for you</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <p>© 2025 AI Career Recommendation System</p>
+            </div>
+            <div class="footer-right">
+                <a href="#privacy" class="footer-link">Privacy</a>
+                <a href="#terms" class="footer-link">Terms</a>
+                <a href="#help" class="footer-link">Help</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Check if user is logged in
+        function checkLoginStatus() {
+            // In a real application, you would check session/cookie/token
+            const isLoggedIn = true; // Change to false to show login button
+            
+            if (isLoggedIn) {
+                // Get user data from localStorage or session
+                const userName = localStorage.getItem('userName') || 'Nikita';
+                const userInitial = userName.charAt(0).toUpperCase();
+                
+                document.getElementById('userAvatar').textContent = userInitial;
+                document.getElementById('userName').textContent = userName;
+                
+                // Show user profile
+                document.getElementById('userProfile').style.display = 'flex';
+            } else {
+                // Show login button at the end
+                const loginButton = document.createElement('a');
+                loginButton.href = 'login.html';
+                loginButton.className = 'btn';
+                loginButton.textContent = 'Start Now';
+                loginButton.style.padding = '0.75rem 1.5rem';
+                loginButton.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                loginButton.style.color = 'white';
+                loginButton.style.borderRadius = '8px';
+                loginButton.style.fontWeight = '600';
+                loginButton.style.textDecoration = 'none';
+                loginButton.style.transition = 'transform 0.3s, box-shadow 0.3s';
+                
+                loginButton.addEventListener('mouseenter', () => {
+                    loginButton.style.transform = 'translateY(-2px)';
+                    loginButton.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.4)';
+                });
+                
+                loginButton.addEventListener('mouseleave', () => {
+                    loginButton.style.transform = 'translateY(0)';
+                    loginButton.style.boxShadow = 'none';
+                });
+                
+                document.querySelector('.user-profile-container').innerHTML = '';
+                document.querySelector('.user-profile-container').appendChild(loginButton);
+            }
+        }
+
+        // Toggle logout dropdown
+        const userProfile = document.getElementById('userProfile');
+        const logoutDropdown = document.getElementById('logoutDropdown');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        userProfile.addEventListener('click', (e) => {
+            e.stopPropagation();
+            logoutDropdown.classList.toggle('show');
+        });
+
+        // Handle logout
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Clear user session data
+            localStorage.removeItem('userName');
+            
+            // Show logout confirmation
+            alert('You have been logged out successfully!');
+            
+            // Redirect to login page
+            window.location.href = 'login.html';
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!userProfile.contains(e.target) && !logoutDropdown.contains(e.target)) {
+                logoutDropdown.classList.remove('show');
+            }
+        });
+
+        // Add hover effect to step cards
+        document.querySelectorAll('.step-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const number = card.querySelector('.step-number span');
+                number.style.transform = 'scale(1.1)';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                const number = card.querySelector('.step-number span');
+                number.style.transform = 'scale(1)';
+            });
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', checkLoginStatus);
+    </script>
+</body>
+
+</html>
