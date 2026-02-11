@@ -2,7 +2,7 @@
  * API Service - Handles all HTTP requests to backend
  */
 
-const API_BASE_URL = 'http://localhost/php-project/backend/api';
+const API_BASE_URL = 'http://localhost/career-guide/backend/api';
 
 class ApiService {
     /**

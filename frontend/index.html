@@ -505,8 +505,8 @@
             <!-- User Profile at the end -->
             <div class="user-profile-container">
                 <div class="user-profile" id="userProfile">
-                    <div class="user-avatar" id="userAvatar">N</div>
-                    <span class="user-name" id="userName">Nikita</span>
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <span class="user-name" id="userName">User</span>
                 </div>
 
                 <!-- Simple Logout Dropdown -->
@@ -623,15 +623,26 @@
         function checkLoginStatus() {
             // In a real application, you would check session/cookie/token
             const isLoggedIn = true; // Change to false to show login button
-            
+
             if (isLoggedIn) {
-                // Get user data from localStorage or session
-                const userName = localStorage.getItem('userName') || 'Nikita';
+                // Get user data from localStorage
+                const userStr = localStorage.getItem('user');
+                let userName = 'User';
+
+                if (userStr) {
+                    try {
+                        const user = JSON.parse(userStr);
+                        userName = user.full_name || user.email || 'User';
+                    } catch (e) {
+                        console.error('Error parsing user data:', e);
+                    }
+                }
+
                 const userInitial = userName.charAt(0).toUpperCase();
-                
+
                 document.getElementById('userAvatar').textContent = userInitial;
                 document.getElementById('userName').textContent = userName;
-                
+
                 // Show user profile
                 document.getElementById('userProfile').style.display = 'flex';
             } else {
@@ -647,17 +658,17 @@
                 loginButton.style.fontWeight = '600';
                 loginButton.style.textDecoration = 'none';
                 loginButton.style.transition = 'transform 0.3s, box-shadow 0.3s';
-                
+
                 loginButton.addEventListener('mouseenter', () => {
                     loginButton.style.transform = 'translateY(-2px)';
                     loginButton.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.4)';
                 });
-                
+
                 loginButton.addEventListener('mouseleave', () => {
                     loginButton.style.transform = 'translateY(0)';
                     loginButton.style.boxShadow = 'none';
                 });
-                
+
                 document.querySelector('.user-profile-container').innerHTML = '';
                 document.querySelector('.user-profile-container').appendChild(loginButton);
             }
@@ -676,13 +687,13 @@
         // Handle logout
         logoutBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            
+
             // Clear user session data
-            localStorage.removeItem('userName');
-            
+            localStorage.removeItem('user');
+
             // Show logout confirmation
             alert('You have been logged out successfully!');
-            
+
             // Redirect to login page
             window.location.href = 'login.html';
         });

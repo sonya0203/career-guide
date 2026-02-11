@@ -11,7 +11,7 @@ This is a complete full-stack PHP application with:
 ## 📁 Project Structure
 
 ```
-php-project/
+career-guide/
 ├── backend/
 │   └── api/
 │       └── users.php          # REST API endpoints
@@ -36,9 +36,9 @@ php-project/
 3. Start **Apache** and **MySQL** from XAMPP Control Panel
 
 ### Step 2: Copy Project Files
-1. Copy the `php-project` folder to XAMPP's `htdocs` directory:
+1. Copy the `career-guide` folder to XAMPP's `htdocs` directory:
    - **Windows**: `C:\xampp\htdocs\`
-   - **Linux**: `/opt/lampp/htdocs/` or `/home/abhishek/career-guide/php-project`
+   - **Linux**: `/opt/lampp/htdocs/` or `/home/abhishek/career-guide/career-guide`
    - **Mac**: `/Applications/XAMPP/htdocs/`
 
 ### Step 3: Create Database
@@ -64,10 +64,10 @@ private $password = "";  // Change if you have a password
 ### Step 5: Update API Base URL
 Edit `frontend/js/api.js` and update the API_BASE_URL:
 ```javascript
-const API_BASE_URL = 'http://localhost/php-project/backend/api';
+const API_BASE_URL = 'http://localhost/career-guide/backend/api';
 ```
 
-**Note**: Replace `php-project` with your actual folder name in htdocs.
+**Note**: Replace `career-guide` with your actual folder name in htdocs.
 
 ## 🌐 Running the Application
 
@@ -77,7 +77,7 @@ const API_BASE_URL = 'http://localhost/php-project/backend/api';
    - Start **MySQL** (for database)
 
 2. **Access the Application**:
-   - Open browser and go to: [http://localhost/php-project/frontend/index.html](http://localhost/php-project/frontend/index.html)
+   - Open browser and go to: [http://localhost/career-guide/frontend/index.html](http://localhost/career-guide/frontend/index.html)
 
 3. **Test the Application**:
    - You should see the User Management interface
@@ -88,7 +88,7 @@ const API_BASE_URL = 'http://localhost/php-project/backend/api';
 
 ### Base URL
 ```
-http://localhost/php-project/backend/api/users.php
+http://localhost/career-guide/backend/api/users.php
 ```
 
 ### Available Endpoints
@@ -162,20 +162,20 @@ Content-Type: application/json
 
 ```bash
 # Get all users
-curl http://localhost/php-project/backend/api/users.php
+curl http://localhost/career-guide/backend/api/users.php
 
 # Create user
-curl -X POST http://localhost/php-project/backend/api/users.php \
+curl -X POST http://localhost/career-guide/backend/api/users.php \
   -H "Content-Type: application/json" \
   -d '{"name":"Test User","email":"test@example.com","phone":"1234567890"}'
 
 # Update user
-curl -X PUT http://localhost/php-project/backend/api/users.php \
+curl -X PUT http://localhost/career-guide/backend/api/users.php \
   -H "Content-Type: application/json" \
   -d '{"id":1,"name":"Updated User","email":"updated@example.com","phone":"0987654321"}'
 
 # Delete user
-curl -X DELETE http://localhost/php-project/backend/api/users.php \
+curl -X DELETE http://localhost/career-guide/backend/api/users.php \
   -H "Content-Type: application/json" \
   -d '{"id":1}'
 ```

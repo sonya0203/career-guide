@@ -3,7 +3,7 @@
  * Handles login, registration, and session management
  */
 
-const AUTH_API_URL = 'http://localhost/php-project/backend/api/auth.php';
+const AUTH_API_URL = 'http://localhost/career-guide/backend/api/auth.php';
 
 /**
  * Toggle password visibility

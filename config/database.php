@@ -6,7 +6,7 @@
 
 class Database {
     private $host = "localhost";
-    private $db_name = "career_guidance";
+    private $db_name = "career_guide_db";
     private $username = "root";
     private $password = "";
     public $conn;
