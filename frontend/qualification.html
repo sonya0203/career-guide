@@ -546,6 +546,7 @@
         </form>
     </div>
 
+    <script src="js/auth.js"></script>
     <script>
         // Custom Multi-Select Dropdown functionality
         const skillsTrigger = document.getElementById('skillsTrigger');
@@ -623,9 +624,26 @@
             }
         }
 
+        // Check authentication on load
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Check if auth.js is loaded
+            if (typeof checkAuth === 'function') {
+                const isLoggedIn = await checkAuth();
+                if (!isLoggedIn) {
+                    window.location.href = 'login.html';
+                }
+            } else {
+                // Fallback if auth.js is not included (though it should be)
+                const user = localStorage.getItem('user');
+                if (!user) {
+                    window.location.href = 'login.html';
+                }
+            }
+        });
+
         // Form submission
         const careerForm = document.getElementById('careerForm');
-        careerForm.addEventListener('submit', (e) => {
+        careerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             // Collect selected skills from checkboxes
@@ -648,13 +666,37 @@
                 workType: document.querySelector('input[name="workType"]:checked').value
             };
 
-            // Store in localStorage
+            // Store in localStorage (keep as backup/for other pages)
             localStorage.setItem('careerFormData', JSON.stringify(formData));
 
-            console.log('Form Data:', formData);
+            try {
+                const response = await fetch('../backend/api/save_qualification.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
 
-            // Navigate to analyse page
-            window.location.href = 'analyse.html';
+                const result = await response.json();
+
+                if (result.success) {
+                    console.log('Data saved successfully:', result);
+                    // Navigate to analyse page
+                    window.location.href = 'analyse.html';
+                } else {
+                    console.error('Error saving data:', result.message);
+                    alert('Error saving data: ' + result.message);
+                    // Decide if we want to proceed anyway or block
+                    // For now, let's block and ask user to retry or check login
+                    if (result.message === 'User not logged in') {
+                        window.location.href = 'index.html'; // Redirect to login
+                    }
+                }
+            } catch (error) {
+                console.error('Network error:', error);
+                alert('Network error occurred. Please try again.');
+            }
         });
     </script>
 </body>
