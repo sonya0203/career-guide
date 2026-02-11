@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP - Career Guide</title>
+    <link rel="stylesheet" href="css/auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .otp-input-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+
+        .otp-digit {
+            width: 50px;
+            height: 55px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            border: 2px solid var(--auth-border);
+            border-radius: 8px;
+            background: var(--auth-input-bg);
+            transition: all 0.2s ease;
+        }
+
+        .otp-digit:focus {
+            outline: none;
+            border-color: var(--auth-primary);
+            background: var(--auth-card-bg);
+            box-shadow: 0 0 0 3px rgba(91, 141, 238, 0.1);
+        }
+
+        .resend-otp {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--auth-text-light);
+        }
+
+        .resend-otp button {
+            background: none;
+            border: none;
+            color: var(--auth-primary);
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 0;
+            margin-left: 0.25rem;
+        }
+
+        .resend-otp button:disabled {
+            color: #cbd5e0;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <div class="auth-logo-icon">🎯</div>
+                <div class="auth-logo-text">Career Guide</div>
+            </div>
+
+            <h1 class="auth-title">Verify OTP</h1>
+            <p style="text-align: center; color: #718096; margin-bottom: 1rem; font-size: 0.9375rem;">
+                We've sent a 6-digit code to <br><strong id="userEmail"></strong>
+            </p>
+
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+            <div id="successMessage" class="success-message" style="display: none;"></div>
+
+            <form id="verifyOtpForm" class="auth-form">
+                <div class="otp-input-wrapper">
+                    <input type="text" maxlength="1" class="otp-digit" id="otp1" pattern="[0-9]" required>
+                    <input type="text" maxlength="1" class="otp-digit" id="otp2" pattern="[0-9]" required>
+                    <input type="text" maxlength="1" class="otp-digit" id="otp3" pattern="[0-9]" required>
+                    <input type="text" maxlength="1" class="otp-digit" id="otp4" pattern="[0-9]" required>
+                    <input type="text" maxlength="1" class="otp-digit" id="otp5" pattern="[0-9]" required>
+                    <input type="text" maxlength="1" class="otp-digit" id="otp6" pattern="[0-9]" required>
+                </div>
+
+                <button type="submit" class="auth-button" id="verifyBtn">Verify</button>
+            </form>
+
+            <div class="resend-otp">
+                Didn't receive the code?
+                <button type="button" id="resendBtn">Resend OTP</button>
+            </div>
+
+            <div class="auth-footer">
+                <a href="login.html">Back to Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        // Initialize verify OTP page
+        initVerifyOtpPage();
+    </script>
+</body>
+
+</html>
