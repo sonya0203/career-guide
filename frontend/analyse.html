@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analyzing - AI Career Recommendation System</title>
+    <!-- Added GFonts for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,25 +16,31 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e8f0fe 100%);
+            font-family: 'Plus Jakarta Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+            /* Subtle mesh gradient background */
+            background-image:
+                radial-gradient(at 0% 0%, hsla(215, 98%, 61%, 0.1) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(256, 100%, 75%, 0.1) 0, transparent 50%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 2rem;
+            color: #1e293b;
         }
 
         .container {
             text-align: center;
             max-width: 600px;
+            width: 100%;
             animation: fadeIn 0.8s ease-in;
         }
 
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
 
             to {
@@ -42,18 +51,24 @@
 
         .header-subtitle {
             color: #64748b;
-            font-size: 1rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(226, 232, 240, 0.5);
+            border-radius: 9999px;
         }
 
         .header-title {
-            color: #1e293b;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            line-height: 1.3;
+            color: #0f172a;
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 2.5rem;
+            line-height: 1.2;
+            letter-spacing: -0.025em;
         }
 
         /* Robot Animation Container */
@@ -147,35 +162,14 @@
             width: 60px;
             height: 60px;
             background: #60a5fa;
-            border-radius: 8px;
+            border-radius: 12px;
             animation: pulse 2s ease-in-out infinite;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 1.8rem;
-        }
-
-        .chip::before {
-            content: '';
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: white;
-            border-radius: 2px;
-            top: 10px;
-            left: 10px;
-        }
-
-        .chip::after {
-            content: '';
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: white;
-            border-radius: 2px;
-            top: 10px;
-            right: 10px;
+            box-shadow: 0 4px 6px -1px rgba(96, 165, 250, 0.4);
         }
 
         @keyframes pulse {
@@ -183,10 +177,12 @@
             0%,
             100% {
                 transform: scale(1);
+                box-shadow: 0 0 0 0px rgba(96, 165, 250, 0.7);
             }
 
             50% {
-                transform: scale(1.1);
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(96, 165, 250, 0);
             }
         }
 
@@ -215,10 +211,12 @@
             width: 120px;
             height: 100px;
             background: white;
-            border: 4px solid #475569;
+            border: 4px solid #334155;
             border-radius: 30px;
             position: relative;
             margin: 0 auto;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            z-index: 2;
         }
 
         .antenna {
@@ -228,7 +226,7 @@
             transform: translateX(-50%);
             width: 4px;
             height: 25px;
-            background: #475569;
+            background: #334155;
         }
 
         .antenna::after {
@@ -239,7 +237,7 @@
             transform: translateX(-50%);
             width: 12px;
             height: 12px;
-            background: #475569;
+            background: #334155;
             border-radius: 50%;
         }
 
@@ -253,7 +251,7 @@
         .eye {
             width: 28px;
             height: 28px;
-            background: #475569;
+            background: #334155;
             border-radius: 50%;
             position: relative;
             animation: blink 3s ease-in-out infinite;
@@ -262,10 +260,10 @@
         .eye::after {
             content: '';
             position: absolute;
-            top: 8px;
-            left: 8px;
-            width: 12px;
-            height: 12px;
+            top: 6px;
+            left: 6px;
+            width: 10px;
+            height: 10px;
             background: white;
             border-radius: 50%;
         }
@@ -287,7 +285,7 @@
         .smile {
             width: 50px;
             height: 25px;
-            border: 3px solid #475569;
+            border: 3px solid #334155;
             border-top: none;
             border-radius: 0 0 30px 30px;
             margin: 10px auto 0;
@@ -297,17 +295,19 @@
             width: 100px;
             height: 80px;
             background: white;
-            border: 4px solid #e2e8f0;
+            border: 4px solid #cbd5e1;
             border-radius: 20px;
-            margin: -10px auto 0;
+            margin: -15px auto 0;
+            position: relative;
+            z-index: 1;
         }
 
         /* Status Text */
         .status-text {
-            color: #334155;
-            font-size: 1.3rem;
+            color: #475569;
+            font-size: 1.25rem;
             font-weight: 500;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             animation: fadeInOut 2s ease-in-out infinite;
         }
 
@@ -315,7 +315,7 @@
 
             0%,
             100% {
-                opacity: 0.6;
+                opacity: 0.7;
             }
 
             50% {
@@ -353,35 +353,338 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .header-title {
-                font-size: 2rem;
+        /* =========================================================================
+           MCQ Interface Styles - Enhanced
+           ========================================================================= */
+
+        /* Layout Grid */
+        .questions-wrapper {
+            display: flex;
+            gap: 2.5rem;
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
+
+        .main-content {
+            flex: 1;
+            text-align: left;
+            min-width: 0;
+            /* Prevents flex overflow */
+        }
+
+        /* Right Sidebar Styling */
+        .sidebar {
+            width: 320px;
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            /* Softer shadow */
+            text-align: left;
+            position: sticky;
+            top: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin-bottom: 2.5rem;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background-color: #e2e8f0;
+            border-radius: 9999px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+            /* Inset shadow depth */
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+            width: 0%;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        /* Shimmer effect on progress bar */
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+            background-size: 20px 20px;
+            animation: moveStripes 1s linear infinite;
+        }
+
+        @keyframes moveStripes {
+            0% {
+                background-position: 0 0;
             }
 
-            .robot-container {
-                width: 250px;
-                height: 250px;
-            }
-
-            .status-text {
-                font-size: 1.1rem;
+            100% {
+                background-position: 20px 20px;
             }
         }
 
-        @media (max-width: 480px) {
+        /* Question Card */
+        .question-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+
+
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+            letter-spacing: -0.01em;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Option Labels (Buttons) */
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 1.25rem 1.5rem;
+            /* More padding */
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            background: white;
+        }
+
+        .option-label:hover {
+            border-color: #93c5fd;
+            background-color: #f0f9ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .option-label.active {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+            /* Ring glow */
+        }
+
+        .option-radio {
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #cbd5e1;
+            /* Neutral grey */
+            border-radius: 50%;
+            margin-right: 1.25rem;
+            position: relative;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        /* Radio checked state styling */
+        .option-radio:checked {
+            border-color: #3b82f6;
+            background-color: #3b82f6;
+            transform: scale(1.1);
+        }
+
+        .option-radio:checked::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .option-container span {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #334155;
+        }
+
+        .option-label.active span {
+            color: #1e40af;
+            /* Darker blue text for active */
+            font-weight: 600;
+        }
+
+        /* Action Buttons */
+        .btn-action {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border: none;
+            padding: 1.125rem 2.5rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-action:active {
+            transform: translateY(0);
+        }
+
+        .btn-action:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Sidebar Items */
+        .user-info-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .user-info-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .user-info-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+
+        .user-info-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .sidebar-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            color: #475569;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .sidebar-btn:hover {
+            background: white;
+            border-color: #94a3b8;
+            color: #1e293b;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .questions-wrapper {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .sidebar {
+                width: 100%;
+                order: -1;
+                /* Sidebar first on mobile? Or maybe collapsed. Keeping original behavior */
+                position: static;
+                margin-bottom: 2rem;
+                padding: 1.5rem;
+            }
+
+            /* Hide non-essential sidebar info on mobile to save space? */
+            .sidebar .user-info-item {
+                display: inline-block;
+                margin-right: 1.5rem;
+                border-bottom: none;
+                margin-bottom: 0.5rem;
+            }
+
+            .sidebar h3 {
+                margin-bottom: 1rem;
+            }
+
             .header-title {
                 font-size: 1.75rem;
             }
 
+            .question-text {
+                font-size: 1.25rem;
+            }
+
+            .option-label {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem;
+            }
+
+            .question-card {
+                padding: 1.5rem;
+            }
+
+            .header-title {
+                font-size: 1.5rem;
+            }
+
             .robot-container {
-                width: 200px;
-                height: 200px;
+                width: 220px;
+                height: 220px;
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- Loading Screen -->
     <div class="container" id="loadingContainer">
         <p class="header-subtitle">AI Career Recommendation System</p>
         <h1 class="header-title">Analyzing your answers<span
@@ -423,36 +726,110 @@
                 class="loading-dots"><span>.</span><span>.</span><span>.</span></span></p>
     </div>
 
-    <!-- Questions Container (Hidden initially) -->
-    <div class="container" id="questionsContainer" style="display: none; max-width: 800px; text-align: left;">
-        <p class="header-subtitle">Assessment</p>
-        <h1 class="header-title" style="margin-bottom: 1.5rem;">Career Aptitude Test</h1>
-        <p style="color: #64748b; margin-bottom: 2rem;">Based on your profile, please answer these questions to refine
-            our recommendation.</p>
+    <!-- Questions Screen (Hidden initially) -->
+    <div class="questions-wrapper" id="questionsContainer" style="display: none;">
+        <!-- Left Column: Question Area -->
+        <div class="main-content">
+            <!-- Header for Question section -->
+            <div style="margin-bottom: 2rem;">
+                <p class="header-subtitle" style="background: rgba(59, 130, 246, 0.1); color: #2563eb;">Assessment Phase
+                </p>
+                <h1 class="header-title" style="margin-bottom: 0.5rem; font-size: 2.5rem;">Career Aptitude Test</h1>
+                <p style="color: #64748b; font-size: 1.1rem;">Answer the following questions to help us understand you
+                    better.</p>
+            </div>
 
-        <form id="mcqForm">
-            <div id="questionsList"></div>
-            <button type="submit" class="btn-submit" style="
-                width: 100%;
-                padding: 1rem;
-                background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-                color: white;
-                border: none;
-                border-radius: 10px;
-                font-size: 1.1rem;
-                font-weight: 600;
-                cursor: pointer;
-                margin-top: 2rem;
-                transition: all 0.3s ease;
-            ">See Results</button>
-        </form>
+            <div class="progress-container">
+                <div class="progress-text">
+                    <span id="questionCount" style="color: #3b82f6;">Question 1/20</span>
+                    <span id="progressPercent" style="color: #94a3b8; font-size: 0.9rem;">5% Completed</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 5%;"></div>
+                </div>
+            </div>
+
+            <div id="questionCard" class="question-card">
+                <!-- Dynamic Question Content -->
+                <h2 class="question-text" id="questionText">Loading question...</h2>
+                <div class="options-list" id="optionsList">
+                    <!-- Options will be injected here -->
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end;">
+                <button id="nextBtn" class="btn-action">
+                    Next Question
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+                <button id="submitBtn" class="btn-action"
+                    style="display: none; background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                    Submit Test
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="sidebar">
+            <h3
+                style="margin-bottom: 2rem; font-size: 1.25rem; color: #0f172a; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
+                <!-- Icon -->
+                <span
+                    style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: #f1f5f9; border-radius: 8px; font-size: 1.2rem;">👤</span>
+                Candidate Profile
+            </h3>
+
+            <div class="user-info-item">
+                <div class="user-info-label">Full Name</div>
+                <div class="user-info-value" id="userName"></div>
+            </div>
+
+            <div class="user-info-item">
+                <div class="user-info-label">Qualification</div>
+                <div class="user-info-value" id="userQual"></div>
+            </div>
+
+            <div class="user-info-item">
+                <div class="user-info-label">Topic</div>
+                <div class="user-info-value" id="userTopic">General Assessment</div>
+            </div>
+
+            <button class="sidebar-btn"
+                onclick="alert('Instructions: Please answer all questions to the best of your ability. There is no time limit, but try to answer instinctively.')">
+                Could use some help? ➜
+            </button>
+        </div>
     </div>
 
     <script src="js/auth.js"></script>
     <script>
         const loadingContainer = document.getElementById('loadingContainer');
         const questionsContainer = document.getElementById('questionsContainer');
-        const questionsList = document.getElementById('questionsList');
+
+        // Progress elements
+        const questionCountEl = document.getElementById('questionCount');
+        const progressFillEl = document.getElementById('progressFill');
+        const progressPercentEl = document.getElementById('progressPercent'); // New element
+
+        // Question elements
+        const questionTextEl = document.getElementById('questionText');
+        const optionsListEl = document.getElementById('optionsList');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Sidebar elements
+        const userNameEl = document.getElementById('userName');
+        const userQualEl = document.getElementById('userQual');
+        const userTopicEl = document.getElementById('userTopic');
+
         const statusText = document.querySelector('.status-text');
 
         // Animation messages
@@ -470,6 +847,11 @@
             statusText.innerHTML = statusMessages[messageIndex] + dotsHtml;
         }, 2000);
 
+        // State
+        let allQuestions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = {}; // Map questionId -> selectedValue
+
         document.addEventListener('DOMContentLoaded', async () => {
             // Check auth
             if (typeof checkAuth === 'function') {
@@ -477,6 +859,21 @@
                 if (!isLoggedIn) {
                     window.location.href = 'login.html';
                     return;
+                }
+                const user = getCurrentUser();
+                if (user) {
+                    userNameEl.textContent = user.full_name || 'Candidate';
+                }
+
+                // Try to load additional info from localStorage (if saved during qualification step)
+                const quals = localStorage.getItem('qualification_data');
+                if (quals) {
+                    try {
+                        const qData = JSON.parse(quals);
+                        if (qData.highest_qualification) userQualEl.textContent = qData.highest_qualification;
+                        // Determine topic based on stream or skills? For now defaults to General
+                        if (qData.stream) userTopicEl.textContent = qData.stream;
+                    } catch (e) { console.log('Error parsing stats', e); }
                 }
             }
 
@@ -491,18 +888,19 @@
                 await minDelay; // Wait for animation
 
                 if (data.success && data.questions && data.questions.length > 0) {
-                    displayQuestions(data.questions);
+                    allQuestions = data.questions;
+                    startAssessment();
+
                     clearInterval(messageInterval);
                     loadingContainer.style.display = 'none';
-                    questionsContainer.style.display = 'block';
-                    questionsContainer.style.animation = 'fadeIn 0.5s ease-in';
+                    questionsContainer.style.display = 'flex'; // Flex for 2-column
+                    questionsContainer.style.animation = 'fadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1)'; // Better ease
                 } else {
                     console.error('No questions found or error:', data.message);
                     statusText.textContent = 'Analysis complete. Redirecting to dashboard...';
                     setTimeout(() => {
-                        // Fallback if no questions
-                        // window.location.href = 'dashboard.html'; 
                         alert('No specific questions found for your stream yet. Redirecting...');
+                        // window.location.href = 'dashboard.html'; 
                     }, 2000);
                 }
             } catch (error) {
@@ -511,57 +909,148 @@
             }
         });
 
-        function displayQuestions(questions) {
-            questionsList.innerHTML = '';
-            questions.forEach((q, index) => {
-                const qDiv = document.createElement('div');
-                qDiv.style.marginBottom = '2rem';
-                qDiv.style.background = 'white';
-                qDiv.style.padding = '1.5rem';
-                qDiv.style.borderRadius = '15px';
-                qDiv.style.boxShadow = '0 4px 6px rgba(0,0,0,0.05)';
+        function startAssessment() {
+            currentQuestionIndex = 0;
+            userAnswers = {};
+            renderQuestion();
+        }
 
-                qDiv.innerHTML = `
-                    <p style="font-weight: 600; font-size: 1.1rem; color: #1e293b; margin-bottom: 1rem;">
-                        ${index + 1}. ${q.question_text}
-                    </p>
-                    <div class="options-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                        ${createOption(q.id, 'a', q.option_a)}
-                        ${createOption(q.id, 'b', q.option_b)}
-                        ${createOption(q.id, 'c', q.option_c)}
-                        ${createOption(q.id, 'd', q.option_d)}
-                    </div>
+        function renderQuestion() {
+            const question = allQuestions[currentQuestionIndex];
+
+            // Update Progress
+            const progressPercent = Math.round(((currentQuestionIndex + 1) / allQuestions.length) * 100);
+            progressFillEl.style.width = `${progressPercent}%`;
+            questionCountEl.textContent = `Question ${currentQuestionIndex + 1}/${allQuestions.length}`;
+            if (progressPercentEl) progressPercentEl.textContent = `${progressPercent}% Completed`;
+
+            // Render Text
+            questionTextEl.textContent = question.question_text;
+
+            // Render Options
+            optionsListEl.innerHTML = '';
+
+            const rawOptions = [
+                { id: 'a', text: question.option_a },
+                { id: 'b', text: question.option_b },
+                { id: 'c', text: question.option_c },
+                { id: 'd', text: question.option_d }
+            ];
+
+            const options = rawOptions.filter(opt => opt.text && opt.text.trim() !== '');
+
+            options.forEach((opt, index) => {
+                const label = document.createElement('label');
+                label.className = 'option-label';
+                // Add staggered animation delay
+                label.style.animation = `fadeIn 0.3s ease-out ${index * 0.05}s forwards`;
+                label.style.opacity = '0'; // Start hidden for animation
+                label.innerHTML = `
+                    <style>
+                        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+                    </style>
                 `;
-                questionsList.appendChild(qDiv);
+
+                // visual selection logic
+                const isSelected = userAnswers[question.id] === opt.id;
+                if (isSelected) label.classList.add('active');
+
+                label.innerHTML = `
+                    <input type="radio" name="q_current" value="${opt.id}" class="option-radio" ${isSelected ? 'checked' : ''}>
+                    <span>${opt.text}</span>
+                `;
+
+                // Click handler
+                label.addEventListener('click', (e) => {
+                    const radio = label.querySelector('input');
+                    radio.checked = true;
+                    selectOption(question.id, opt.id, label);
+                });
+
+                optionsListEl.appendChild(label);
             });
+
+            // Button logic
+            if (currentQuestionIndex === allQuestions.length - 1) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'inline-flex';
+            } else {
+                nextBtn.style.display = 'inline-flex';
+                submitBtn.style.display = 'none';
+            }
         }
 
-        function createOption(qId, value, text) {
-            return `
-                <label style="
-                    display: flex;
-                    align-items: center;
-                    padding: 0.75rem;
-                    border: 2px solid #e2e8f0;
-                    border-radius: 8px;
-                    cursor: pointer;
-                    transition: all 0.2s;
-                " onmouseover="this.style.borderColor='#3b82f6';this.style.background='#f8fafc'"
-                  onmouseout="if(!this.querySelector('input').checked){this.style.borderColor='#e2e8f0';this.style.background='white'}">
-                    <input type="radio" name="q_${qId}" value="${value}" style="margin-right: 10px; accent-color: #3b82f6;" required>
-                    <span style="color: #475569;">${text}</span>
-                </label>
-            `;
+        function selectOption(qId, optValue, labelElement) {
+            // Update state
+            userAnswers[qId] = optValue;
+
+            // Visual update
+            const allLabels = optionsListEl.querySelectorAll('.option-label');
+            allLabels.forEach(l => {
+                l.classList.remove('active');
+                l.querySelector('input').checked = false;
+            });
+
+            labelElement.classList.add('active');
+            labelElement.querySelector('input').checked = true;
         }
 
-        // Handle form submission
-        document.getElementById('mcqForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Collect answers logic here
-            alert('Assessment submitted! (Results page coming soon)');
+        nextBtn.addEventListener('click', () => {
+            const currentQ = allQuestions[currentQuestionIndex];
+            if (!userAnswers[currentQ.id]) {
+                // Shake animation for feedback?
+                nextBtn.style.animation = 'shake 0.4s ease-in-out';
+                setTimeout(() => nextBtn.style.animation = '', 400);
+
+                // Add shake css dynamically if needed, or just alert
+                alert('Please select an answer to continue.');
+                return;
+            }
+
+            // Add fade out effect?
+            const card = document.getElementById('questionCard');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(-10px)';
+
+            setTimeout(() => {
+                currentQuestionIndex++;
+                renderQuestion();
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 200);
+        });
+
+        submitBtn.addEventListener('click', () => {
+            const currentQ = allQuestions[currentQuestionIndex];
+            if (!userAnswers[currentQ.id]) {
+                alert('Please select an answer before submitting.');
+                return;
+            }
+
+            // Submit Logic
+            console.log('Final Answers:', userAnswers);
+            alert('Assessment submitted successfully!');
             // window.location.href = 'results.html';
         });
+
     </script>
+    <style>
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+        }
+    </style>
 </body>
 
 </html>
