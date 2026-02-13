@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Qualification - Career Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            color: #4a5568;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+            background: #ebf4ff;
+        }
+
+        /* Content */
+        .page-content {
+            padding: 6rem 2rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .user-avatar-lg {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .page-header-info h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .page-header-info p {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-top: 2px;
+        }
+
+        /* Card */
+        .qual-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .qual-card-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.25rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .qual-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .qual-item {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid #f0f2f5;
+            border-right: 1px solid #f0f2f5;
+        }
+
+        .qual-item:nth-child(even) {
+            border-right: none;
+        }
+
+        .qual-item:nth-last-child(-n+2) {
+            border-bottom: none;
+        }
+
+        .qual-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #a0aec0;
+            margin-bottom: 6px;
+        }
+
+        .qual-value {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #2d3748;
+            word-break: break-word;
+        }
+
+        .qual-value.empty {
+            color: #cbd5e0;
+        }
+
+        /* Skills tags */
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, #667eea15, #764ba215);
+            border: 1px solid #667eea30;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #667eea;
+        }
+
+        /* Full width item */
+        .qual-item.full {
+            grid-column: 1 / -1;
+            border-right: none;
+        }
+
+        /* No data state */
+        .no-data-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .no-data-card .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .no-data-card h2 {
+            font-size: 1.25rem;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+        }
+
+        .no-data-card p {
+            color: #a0aec0;
+            font-size: 0.95rem;
+        }
+
+        /* Loading */
+        .loading-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #718096;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            border: 3px solid #e2e8f0;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .qual-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .qual-item {
+                border-right: none;
+            }
+
+            .page-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <div class="logo-icon">AI</div>
+                <span>Career Guide</span>
+            </div>
+            <a href="index.html" class="back-btn">← Back to Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="page-content">
+        <div class="page-header">
+            <div class="user-avatar-lg" id="userAvatarLg">?</div>
+            <div class="page-header-info">
+                <h1 id="pageUserName">Loading...</h1>
+                <p id="pageUserEmail"></p>
+            </div>
+        </div>
+
+        <div id="qualContent">
+            <div class="loading-card">
+                <div class="spinner"></div>
+                <br>Loading qualification details...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost/career-guide/backend/api/get_qualification.php';
+
+        async function loadQualification() {
+            const params = new URLSearchParams(window.location.search);
+            const userId = params.get('user_id');
+            const userName = params.get('name') || 'User';
+            const userEmail = params.get('email') || '';
+
+            // Set header info
+            document.getElementById('userAvatarLg').textContent = userName.charAt(0).toUpperCase();
+            document.getElementById('pageUserName').textContent = userName;
+            document.getElementById('pageUserEmail').textContent = userEmail;
+
+            if (!userId) {
+                document.getElementById('qualContent').innerHTML =
+                    `<div class="no-data-card">
+                        <div class="icon">⚠️</div>
+                        <h2>Invalid Request</h2>
+                        <p>No user ID provided.</p>
+                    </div>`;
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API_URL}?user_id=${userId}`);
+                const json = await res.json();
+
+                if (!json.success) {
+                    document.getElementById('qualContent').innerHTML =
+                        `<div class="no-data-card">
+                            <div class="icon">⚠️</div>
+                            <h2>Error</h2>
+                            <p>${json.message || 'Failed to load data'}</p>
+                        </div>`;
+                    return;
+                }
+
+                const q = json.data;
+
+                if (!q) {
+                    document.getElementById('qualContent').innerHTML =
+                        `<div class="no-data-card">
+                            <div class="icon">📋</div>
+                            <h2>No Qualification Data</h2>
+                            <p>This user has not submitted their qualification details yet.</p>
+                        </div>`;
+                    return;
+                }
+
+                // Render skills as tags
+                const skillsHtml = q.skills
+                    ? q.skills.split(',').map(s => `<span class="skill-tag">${s.trim()}</span>`).join('')
+                    : '<span class="qual-value empty">—</span>';
+
+                document.getElementById('qualContent').innerHTML =
+                    `<div class="qual-card">
+                        <div class="qual-card-header">📄 Qualification Details</div>
+                        <div class="qual-grid">
+                            <div class="qual-item">
+                                <div class="qual-label">Full Name</div>
+                                <div class="qual-value">${q.full_name || '—'}</div>
+                            </div>
+                            <div class="qual-item">
+                                <div class="qual-label">Age</div>
+                                <div class="qual-value">${q.age || '—'}</div>
+                            </div>
+                            <div class="qual-item">
+                                <div class="qual-label">Highest Qualification</div>
+                                <div class="qual-value">${q.highest_qualification || '—'}</div>
+                            </div>
+                            <div class="qual-item">
+                                <div class="qual-label">Stream</div>
+                                <div class="qual-value">${q.stream || '—'}</div>
+                            </div>
+                            <div class="qual-item full">
+                                <div class="qual-label">Skills</div>
+                                <div class="skill-tags">${skillsHtml}</div>
+                            </div>
+                            <div class="qual-item">
+                                <div class="qual-label">Interests</div>
+                                <div class="qual-value">${q.interests || '—'}</div>
+                            </div>
+                            <div class="qual-item">
+                                <div class="qual-label">Work Type</div>
+                                <div class="qual-value">${q.work_type || '—'}</div>
+                            </div>
+                            <div class="qual-item full">
+                                <div class="qual-label">Submitted On</div>
+                                <div class="qual-value">${q.created_at ? new Date(q.created_at).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—'}</div>
+                            </div>
+                        </div>
+                    </div>`;
+
+            } catch (err) {
+                console.error('Error:', err);
+                document.getElementById('qualContent').innerHTML =
+                    `<div class="no-data-card">
+                        <div class="icon">⚠️</div>
+                        <h2>Connection Error</h2>
+                        <p>Unable to connect to the server.</p>
+                    </div>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadQualification);
+    </script>
+</body>
+
+</html>

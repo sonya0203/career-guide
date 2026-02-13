@@ -17,11 +17,25 @@
                 <div class="auth-logo-text">Career Guide</div>
             </div>
 
-            <h1 class="auth-title">Welcome back!</h1>
+            <!-- Login Tabs -->
+            <div class="login-tabs">
+                <button class="tab-btn active" data-role="user" id="userTab">
+                    <span class="tab-icon">👤</span>
+                    <span>User</span>
+                </button>
+                <button class="tab-btn" data-role="admin" id="adminTab">
+                    <span class="tab-icon">🛡️</span>
+                    <span>Admin</span>
+                </button>
+            </div>
+
+            <h1 class="auth-title" id="loginTitle">Welcome back!</h1>
 
             <div id="errorMessage" class="error-message" style="display: none;"></div>
 
             <form id="loginForm" class="auth-form">
+                <input type="hidden" id="loginRole" value="user">
+
                 <div class="form-group">
                     <label for="email">Email</label>
                     <div class="input-wrapper">
@@ -46,7 +60,7 @@
                 <button type="submit" class="auth-button" id="loginBtn">Login</button>
             </form>
 
-            <div class="auth-footer">
+            <div class="auth-footer" id="registerFooter">
                 Don't have an account? <a href="register.html">Register</a>
             </div>
         </div>
@@ -54,6 +68,27 @@
 
     <script src="js/auth.js"></script>
     <script>
+        // Tab switching logic
+        const userTab = document.getElementById('userTab');
+        const adminTab = document.getElementById('adminTab');
+        const loginRole = document.getElementById('loginRole');
+        const loginTitle = document.getElementById('loginTitle');
+
+        function switchTab(activeTab, inactiveTab, role) {
+            activeTab.classList.add('active');
+            inactiveTab.classList.remove('active');
+            loginRole.value = role;
+
+            if (role === 'admin') {
+                loginTitle.textContent = 'Admin Login';
+            } else {
+                loginTitle.textContent = 'Welcome back!';
+            }
+        }
+
+        userTab.addEventListener('click', () => switchTab(userTab, adminTab, 'user'));
+        adminTab.addEventListener('click', () => switchTab(adminTab, userTab, 'admin'));
+
         // Initialize login page
         initLoginPage();
     </script>

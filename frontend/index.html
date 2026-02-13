@@ -418,6 +418,308 @@
             color: white;
         }
 
+        /* ========= Admin Dashboard ========= */
+        .admin-dashboard {
+            display: none;
+            padding: 6rem 2rem 2rem;
+            min-height: 100vh;
+            background: #f0f2f5;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .admin-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #2d3748;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .admin-title-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+
+        .stat-icon.users {
+            background: #ebf5ff;
+        }
+
+        .stat-icon.admins {
+            background: #fff5f5;
+        }
+
+        .stat-icon.recent {
+            background: #f0fff4;
+        }
+
+        .stat-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .stat-info p {
+            font-size: 0.85rem;
+            color: #718096;
+            margin-top: 2px;
+        }
+
+        /* Search bar */
+        .table-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 0 1 320px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 14px 10px 40px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: white;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+        }
+
+        .search-box::before {
+            content: '🔍';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        .entries-info {
+            font-size: 0.875rem;
+            color: #718096;
+        }
+
+        /* Table */
+        .table-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .users-table thead {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .users-table th {
+            text-align: left;
+            padding: 14px 18px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .users-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid #f0f2f5;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        .users-table tbody tr {
+            transition: background 0.15s;
+        }
+
+        .users-table tbody tr:hover {
+            background: #f7fafc;
+        }
+
+        .users-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .role-badge.admin {
+            background: linear-gradient(135deg, #e53e3e, #c53030);
+            color: white;
+        }
+
+        .role-badge.user {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .user-avatar-sm {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            padding: 1.25rem;
+        }
+
+        .page-btn {
+            min-width: 36px;
+            height: 36px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .page-btn:hover:not(:disabled):not(.active) {
+            border-color: #667eea;
+            color: #667eea;
+            background: #ebf4ff;
+        }
+
+        .page-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+        }
+
+        .page-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            color: #a0aec0;
+        }
+
+        .no-data-icon {
+            font-size: 3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .table-loading {
+            text-align: center;
+            padding: 3rem;
+            color: #718096;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border: 3px solid #e2e8f0;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 1024px) {
             .hero-container {
@@ -465,6 +767,17 @@
             .footer-container {
                 flex-direction: column;
                 text-align: center;
+            }
+
+            .users-table th,
+            .users-table td {
+                padding: 10px 12px;
+                font-size: 0.81rem;
+            }
+
+            .admin-header {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
 
@@ -604,6 +917,69 @@
         </div>
     </section>
 
+    <!-- Admin Dashboard (hidden by default, shown for admins) -->
+    <section class="admin-dashboard" id="adminDashboard">
+        <div class="admin-container">
+            <div class="admin-header">
+                <div class="admin-title">
+                    <div class="admin-title-icon">🛡️</div>
+                    <span>Dashboard</span>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <div class="stat-icon users">👥</div>
+                    <div class="stat-info">
+                        <h3 id="totalUsersCount">0</h3>
+                        <p>Total Users</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon recent">🕐</div>
+                    <div class="stat-info">
+                        <h3 id="recentUsersCount">0</h3>
+                        <p>Joined this week</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table Toolbar -->
+            <div class="table-toolbar">
+                <div class="search-box">
+                    <input type="text" id="userSearch" placeholder="Search by name or email...">
+                </div>
+                <div class="entries-info" id="entriesInfo">Showing 0 entries</div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-card">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Joined</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <tr>
+                            <td colspan="5" class="table-loading">
+                                <div class="spinner"></div><br>Loading users...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Pagination -->
+                <div class="pagination" id="pagination"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
@@ -619,62 +995,158 @@
     </footer>
 
     <script>
-        // Check if user is logged in
+        const USERS_API_URL = 'http://localhost/career-guide/backend/api/users.php';
+        let currentPage = 1;
+        let currentSearch = '';
+        const PAGE_SIZE = 10;
+
+        // Check if user is logged in - redirect to login if not
         function checkLoginStatus() {
-            // In a real application, you would check session/cookie/token
-            const isLoggedIn = true; // Change to false to show login button
+            const userStr = localStorage.getItem('user');
 
-            if (isLoggedIn) {
-                // Get user data from localStorage
-                const userStr = localStorage.getItem('user');
-                let userName = 'User';
+            if (!userStr) {
+                window.location.href = 'login.html';
+                return;
+            }
 
-                if (userStr) {
-                    try {
-                        const user = JSON.parse(userStr);
-                        userName = user.full_name || user.email || 'User';
-                    } catch (e) {
-                        console.error('Error parsing user data:', e);
-                    }
-                }
+            let userName = 'User';
+            let userRole = 'user';
+            try {
+                const user = JSON.parse(userStr);
+                userName = user.full_name || user.email || 'User';
+                userRole = user.role || 'user';
+            } catch (e) {
+                console.error('Error parsing user data:', e);
+                localStorage.removeItem('user');
+                window.location.href = 'login.html';
+                return;
+            }
 
-                const userInitial = userName.charAt(0).toUpperCase();
+            const userInitial = userName.charAt(0).toUpperCase();
+            document.getElementById('userAvatar').textContent = userInitial;
+            document.getElementById('userName').textContent = userName;
 
-                document.getElementById('userAvatar').textContent = userInitial;
-                document.getElementById('userName').textContent = userName;
+            // Show role badge
+            const roleText = userRole === 'admin' ? 'Admin' : 'User';
+            const roleBadge = document.createElement('span');
+            roleBadge.textContent = roleText;
+            roleBadge.style.cssText = 'font-size:0.7rem;padding:2px 8px;border-radius:12px;font-weight:600;margin-left:6px;' +
+                (userRole === 'admin'
+                    ? 'background:linear-gradient(135deg,#e53e3e,#c53030);color:white;'
+                    : 'background:linear-gradient(135deg,#667eea,#764ba2);color:white;');
+            document.getElementById('userName').appendChild(roleBadge);
 
-                // Show user profile
-                document.getElementById('userProfile').style.display = 'flex';
-            } else {
-                // Show login button at the end
-                const loginButton = document.createElement('a');
-                loginButton.href = 'login.html';
-                loginButton.className = 'btn';
-                loginButton.textContent = 'Start Now';
-                loginButton.style.padding = '0.75rem 1.5rem';
-                loginButton.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-                loginButton.style.color = 'white';
-                loginButton.style.borderRadius = '8px';
-                loginButton.style.fontWeight = '600';
-                loginButton.style.textDecoration = 'none';
-                loginButton.style.transition = 'transform 0.3s, box-shadow 0.3s';
+            document.getElementById('userProfile').style.display = 'flex';
 
-                loginButton.addEventListener('mouseenter', () => {
-                    loginButton.style.transform = 'translateY(-2px)';
-                    loginButton.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.4)';
-                });
-
-                loginButton.addEventListener('mouseleave', () => {
-                    loginButton.style.transform = 'translateY(0)';
-                    loginButton.style.boxShadow = 'none';
-                });
-
-                document.querySelector('.user-profile-container').innerHTML = '';
-                document.querySelector('.user-profile-container').appendChild(loginButton);
+            // If admin → show admin dashboard, hide user content
+            if (userRole === 'admin') {
+                document.getElementById('home').style.display = 'none';
+                document.getElementById('how-it-works').style.display = 'none';
+                document.getElementById('adminDashboard').style.display = 'block';
+                loadUsers(1);
+                initSearch();
             }
         }
 
-        // Toggle logout dropdown
+        // ===== Admin: Fetch & render users =====
+        async function loadUsers(page) {
+            currentPage = page;
+            const tbody = document.getElementById('usersTableBody');
+            tbody.innerHTML = '<tr><td colspan="5" class="table-loading"><div class="spinner"></div><br>Loading...</td></tr>';
+
+            try {
+                let url = `${USERS_API_URL}?page=${page}&limit=${PAGE_SIZE}&role=user`;
+                if (currentSearch) url += `&search=${encodeURIComponent(currentSearch)}`;
+
+                const res = await fetch(url);
+                const json = await res.json();
+
+                if (!json.success) {
+                    tbody.innerHTML = '<tr><td colspan="5" class="no-data"><div class="no-data-icon">⚠️</div>Failed to load users</td></tr>';
+                    return;
+                }
+
+                const { data: users, total, page: pg, totalPages } = json;
+
+                // Update stats
+                document.getElementById('totalUsersCount').textContent = total;
+                const weekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+                const recent = users.filter(u => new Date(u.created_at).getTime() > weekAgo).length;
+                document.getElementById('recentUsersCount').textContent = recent;
+
+                // Entries info
+                const start = (pg - 1) * PAGE_SIZE + 1;
+                const end = Math.min(pg * PAGE_SIZE, total);
+                document.getElementById('entriesInfo').textContent = total > 0
+                    ? `Showing ${start}–${end} of ${total} users`
+                    : 'No users found';
+
+                if (users.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" class="no-data"><div class="no-data-icon">📭</div>No users found</td></tr>';
+                    document.getElementById('pagination').innerHTML = '';
+                    return;
+                }
+
+                // Render rows
+                tbody.innerHTML = users.map((u, i) => {
+                    const initials = (u.full_name || '?').charAt(0).toUpperCase();
+                    const date = new Date(u.created_at).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+                    const roleCls = u.role === 'admin' ? 'admin' : 'user';
+                    const rowNum = (pg - 1) * PAGE_SIZE + i + 1;
+                    return `<tr>
+                        <td>${rowNum}</td>
+                        <td><a href="user-qualification.html?user_id=${u.id}&name=${encodeURIComponent(u.full_name || '')}&email=${encodeURIComponent(u.email)}" style="text-decoration:none;color:inherit;cursor:pointer"><span class="user-avatar-sm">${initials}</span><span style="color:#667eea;font-weight:500">${u.full_name || '—'}</span></a></td>
+                        <td>${u.email}</td>
+                        <td><span class="role-badge ${roleCls}">${u.role || 'user'}</span></td>
+                        <td>${date}</td>
+                    </tr>`;
+                }).join('');
+
+                // Pagination
+                renderPagination(pg, totalPages);
+
+            } catch (err) {
+                console.error('Error loading users:', err);
+                tbody.innerHTML = '<tr><td colspan="5" class="no-data"><div class="no-data-icon">⚠️</div>Error connecting to server</td></tr>';
+            }
+        }
+
+        function renderPagination(page, totalPages) {
+            const container = document.getElementById('pagination');
+            if (totalPages <= 1) { container.innerHTML = ''; return; }
+
+            let html = `<button class="page-btn" onclick="loadUsers(${page - 1})" ${page === 1 ? 'disabled' : ''}>&laquo;</button>`;
+
+            // Show max 5 page buttons around current page
+            let startP = Math.max(1, page - 2);
+            let endP = Math.min(totalPages, page + 2);
+            if (endP - startP < 4) {
+                if (startP === 1) endP = Math.min(totalPages, 5);
+                else startP = Math.max(1, totalPages - 4);
+            }
+
+            if (startP > 1) html += `<button class="page-btn" onclick="loadUsers(1)">1</button><span style="padding:0 4px;color:#a0aec0">…</span>`;
+            for (let i = startP; i <= endP; i++) {
+                html += `<button class="page-btn ${i === page ? 'active' : ''}" onclick="loadUsers(${i})">${i}</button>`;
+            }
+            if (endP < totalPages) html += `<span style="padding:0 4px;color:#a0aec0">…</span><button class="page-btn" onclick="loadUsers(${totalPages})">${totalPages}</button>`;
+
+            html += `<button class="page-btn" onclick="loadUsers(${page + 1})" ${page === totalPages ? 'disabled' : ''}>&raquo;</button>`;
+            container.innerHTML = html;
+        }
+
+        function initSearch() {
+            let timeout;
+            document.getElementById('userSearch').addEventListener('input', (e) => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    currentSearch = e.target.value.trim();
+                    loadUsers(1);
+                }, 400);
+            });
+        }
+
+        // ===== Common UI logic =====
         const userProfile = document.getElementById('userProfile');
         const logoutDropdown = document.getElementById('logoutDropdown');
         const logoutBtn = document.getElementById('logoutBtn');
@@ -684,41 +1156,30 @@
             logoutDropdown.classList.toggle('show');
         });
 
-        // Handle logout
         logoutBtn.addEventListener('click', (e) => {
             e.preventDefault();
-
-            // Clear user session data
             localStorage.removeItem('user');
-
-            // Show logout confirmation
             alert('You have been logged out successfully!');
-
-            // Redirect to login page
             window.location.href = 'login.html';
         });
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', (e) => {
             if (!userProfile.contains(e.target) && !logoutDropdown.contains(e.target)) {
                 logoutDropdown.classList.remove('show');
             }
         });
 
-        // Add hover effect to step cards
         document.querySelectorAll('.step-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
                 const number = card.querySelector('.step-number span');
-                number.style.transform = 'scale(1.1)';
+                if (number) number.style.transform = 'scale(1.1)';
             });
-
             card.addEventListener('mouseleave', () => {
                 const number = card.querySelector('.step-number span');
-                number.style.transform = 'scale(1)';
+                if (number) number.style.transform = 'scale(1)';
             });
         });
 
-        // Initialize on page load
         document.addEventListener('DOMContentLoaded', checkLoginStatus);
     </script>
 </body>

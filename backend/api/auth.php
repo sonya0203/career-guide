@@ -121,13 +121,17 @@ function handleRegister($db) {
     // Hash password
     $hashed_password = password_hash($data->password, PASSWORD_BCRYPT);
     
-    // Insert new user
-    $query = "INSERT INTO auth_users (full_name, email, password) VALUES (:full_name, :email, :password)";
+    // Get role from request (default to 'user')
+    $role = isset($data->role) && in_array($data->role, ['user', 'admin']) ? $data->role : 'user';
+    
+    // Insert new user with selected role
+    $query = "INSERT INTO auth_users (full_name, email, password, role) VALUES (:full_name, :email, :password, :role)";
     $stmt = $db->prepare($query);
     
     $stmt->bindParam(':full_name', $data->full_name);
     $stmt->bindParam(':email', $data->email);
     $stmt->bindParam(':password', $hashed_password);
+    $stmt->bindParam(':role', $role);
     
     if($stmt->execute()) {
         http_response_code(201);
@@ -161,10 +165,14 @@ function handleLogin($db) {
         return;
     }
     
-    // Get user by email
-    $query = "SELECT * FROM auth_users WHERE email = :email";
+    // Get the role from request (default to 'user')
+    $role = isset($data->role) ? $data->role : 'user';
+    
+    // Get user by email and role
+    $query = "SELECT * FROM auth_users WHERE email = :email AND role = :role";
     $stmt = $db->prepare($query);
     $stmt->bindParam(':email', $data->email);
+    $stmt->bindParam(':role', $role);
     $stmt->execute();
     
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -175,6 +183,7 @@ function handleLogin($db) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['full_name'] = $user['full_name'];
         $_SESSION['email'] = $user['email'];
+        $_SESSION['role'] = $user['role'];
         $_SESSION['logged_in'] = true;
         
         echo json_encode([
@@ -183,7 +192,8 @@ function handleLogin($db) {
             'user' => [
                 'id' => $user['id'],
                 'full_name' => $user['full_name'],
-                'email' => $user['email']
+                'email' => $user['email'],
+                'role' => $user['role']
             ]
         ]);
     } else {
@@ -229,7 +239,8 @@ function handleCheckSession() {
             'user' => [
                 'id' => $_SESSION['user_id'],
                 'full_name' => $_SESSION['full_name'],
-                'email' => $_SESSION['email']
+                'email' => $_SESSION['email'],
+                'role' => isset($_SESSION['role']) ? $_SESSION['role'] : 'user'
             ]
         ]);
     } else {

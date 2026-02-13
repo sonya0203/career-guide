@@ -17,12 +17,26 @@
                 <div class="auth-logo-text">Career Guide</div>
             </div>
 
-            <h1 class="auth-title">Create your account</h1>
+            <!-- Register Tabs -->
+            <div class="login-tabs">
+                <button class="tab-btn active" data-role="user" id="userTab">
+                    <span class="tab-icon">👤</span>
+                    <span>User</span>
+                </button>
+                <button class="tab-btn" data-role="admin" id="adminTab">
+                    <span class="tab-icon">🛡️</span>
+                    <span>Admin</span>
+                </button>
+            </div>
+
+            <h1 class="auth-title" id="registerTitle">Create your account</h1>
 
             <div id="errorMessage" class="error-message" style="display: none;"></div>
             <div id="successMessage" class="success-message" style="display: none;"></div>
 
             <form id="registerForm" class="auth-form">
+                <input type="hidden" id="registerRole" value="user">
+
                 <div class="form-group">
                     <label for="fullName">Full Name</label>
                     <div class="input-wrapper">
@@ -70,6 +84,27 @@
 
     <script src="js/auth.js"></script>
     <script>
+        // Tab switching logic
+        const userTab = document.getElementById('userTab');
+        const adminTab = document.getElementById('adminTab');
+        const registerRole = document.getElementById('registerRole');
+        const registerTitle = document.getElementById('registerTitle');
+
+        function switchTab(activeTab, inactiveTab, role) {
+            activeTab.classList.add('active');
+            inactiveTab.classList.remove('active');
+            registerRole.value = role;
+
+            if (role === 'admin') {
+                registerTitle.textContent = 'Create Admin Account';
+            } else {
+                registerTitle.textContent = 'Create your account';
+            }
+        }
+
+        userTab.addEventListener('click', () => switchTab(userTab, adminTab, 'user'));
+        adminTab.addEventListener('click', () => switchTab(adminTab, userTab, 'admin'));
+
         // Initialize register page
         initRegisterPage();
     </script>

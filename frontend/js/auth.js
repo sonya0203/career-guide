@@ -74,6 +74,10 @@ function initLoginPage() {
         const password = document.getElementById('password').value;
         const loginBtn = document.getElementById('loginBtn');
         
+        // Get selected role from hidden input
+        const roleInput = document.getElementById('loginRole');
+        const role = roleInput ? roleInput.value : 'user';
+        
         // Validate
         if (!email || !password) {
             showError('Please fill in all fields');
@@ -90,7 +94,7 @@ function initLoginPage() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email, password })
+                body: JSON.stringify({ email, password, role })
             });
             
             const data = await response.json();
@@ -132,6 +136,10 @@ function initRegisterPage() {
         const confirmPassword = document.getElementById('confirmPassword').value;
         const registerBtn = document.getElementById('registerBtn');
         
+        // Get selected role from hidden input
+        const roleInput = document.getElementById('registerRole');
+        const role = roleInput ? roleInput.value : 'user';
+        
         // Validate
         if (!fullName || !email || !password || !confirmPassword) {
             showError('Please fill in all fields');
@@ -161,7 +169,8 @@ function initRegisterPage() {
                 body: JSON.stringify({
                     full_name: fullName,
                     email: email,
-                    password: password
+                    password: password,
+                    role: role
                 })
             });
             

@@ -22,7 +22,7 @@ switch($method) {
         // Get all users or single user
         if(isset($_GET['id'])) {
             $id = $_GET['id'];
-            $query = "SELECT id, full_name, email, created_at, updated_at FROM auth_users WHERE id = :id";
+            $query = "SELECT id, full_name, email, role, created_at, updated_at FROM auth_users WHERE id = :id";
             $stmt = $db->prepare($query);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
@@ -41,15 +41,59 @@ switch($method) {
                 ]);
             }
         } else {
-            $query = "SELECT id, full_name, email, created_at, updated_at FROM auth_users ORDER BY created_at DESC";
+            // Pagination parameters
+            $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
+            $limit = isset($_GET['limit']) ? max(1, min(100, intval($_GET['limit']))) : 10;
+            $offset = ($page - 1) * $limit;
+            $search = isset($_GET['search']) ? trim($_GET['search']) : '';
+            $roleFilter = isset($_GET['role']) && in_array($_GET['role'], ['user', 'admin']) ? $_GET['role'] : '';
+            
+            // Build WHERE clause
+            $conditions = [];
+            $params = [];
+            
+            if($roleFilter) {
+                $conditions[] = "role = :role";
+                $params[':role'] = $roleFilter;
+            }
+            
+            if($search) {
+                $searchParam = "%{$search}%";
+                $conditions[] = "(full_name LIKE :search OR email LIKE :search2)";
+                $params[':search'] = $searchParam;
+                $params[':search2'] = $searchParam;
+            }
+            
+            $whereClause = count($conditions) > 0 ? 'WHERE ' . implode(' AND ', $conditions) : '';
+            
+            // Get total count
+            $countQuery = "SELECT COUNT(*) as total FROM auth_users {$whereClause}";
+            $countStmt = $db->prepare($countQuery);
+            foreach($params as $key => $val) {
+                $countStmt->bindValue($key, $val);
+            }
+            $countStmt->execute();
+            $total = $countStmt->fetch(PDO::FETCH_ASSOC)['total'];
+            
+            // Get paginated users
+            $query = "SELECT id, full_name, email, role, created_at, updated_at FROM auth_users {$whereClause} ORDER BY created_at DESC LIMIT :limit OFFSET :offset";
             $stmt = $db->prepare($query);
+            foreach($params as $key => $val) {
+                $stmt->bindValue($key, $val);
+            }
+            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
             $stmt->execute();
             $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             echo json_encode([
                 'success' => true,
                 'data' => $users,
-                'count' => count($users)
+                'count' => count($users),
+                'total' => intval($total),
+                'page' => $page,
+                'limit' => $limit,
+                'totalPages' => ceil($total / $limit)
             ]);
         }
         break;
