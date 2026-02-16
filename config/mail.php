@@ -15,5 +15,5 @@ define('MAIL_PORT', 587);
 define('MAIL_USERNAME', 'mhadeshwarnikita@gmail.com');      // Your Gmail address
 define('MAIL_PASSWORD', 'wftknabqhxbcksbf');          // Your Gmail App Password (16 chars)
 define('MAIL_FROM_EMAIL', 'mhadeshwarnikita@gmail.com');     // Same as MAIL_USERNAME
-define('MAIL_FROM_NAME', 'Career Guide');
+define('MAIL_FROM_NAME', 'Career Recommendation System');
 ?>

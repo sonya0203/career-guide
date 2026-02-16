@@ -333,7 +333,7 @@ function handleSendOtp($db) {
             $mail->Subject = 'Password Reset Code - Career Guide';
             $mail->Body = '
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-                    <h2 style="color: #667eea; text-align: center;">Career Guide</h2>
+                    <h2 style="color: #667eea; text-align: center;">Career Recommendation System</h2>
                     <div style="background: #f7fafc; border-radius: 10px; padding: 30px; text-align: center;">
                         <h3 style="color: #2d3748;">Password Reset Code</h3>
                         <p style="color: #718096;">Use the following code to reset your password:</p>

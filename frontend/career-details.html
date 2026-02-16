@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Details - Career Recommendation System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #eef2ff 0%, #dbeafe 50%, #e0e7ff 100%);
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4f6af6;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+
+        .back-btn:hover {
+            color: #3b55e6;
+            transform: translateX(-3px);
+        }
+
+        /* Main Detail Card */
+        .detail-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.07);
+            border: 1px solid #e2e8f0;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header Section */
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .detail-header-left {
+            flex: 1;
+        }
+
+        .detail-subtitle {
+            color: #6366f1;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-category {
+            color: #64748b;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .match-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(135deg, #eef2ff, #dbeafe);
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            min-width: 120px;
+        }
+
+        .match-badge-percent {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #4f6af6;
+            line-height: 1;
+        }
+
+        .match-badge-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            border: 1px solid #f1f5f9;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.35rem;
+        }
+
+        .info-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-icon {
+            font-size: 1.2rem;
+        }
+
+        .section-text {
+            color: #475569;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Skills Tags */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: #eef2ff;
+            color: #4f6af6;
+            padding: 0.4rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1px solid #c7d2fe;
+        }
+
+        /* Responsibilities List */
+        .responsibilities-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .responsibilities-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.6rem;
+            color: #475569;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .responsibilities-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #4f6af6;
+            font-weight: 700;
+        }
+
+        /* Tools Grid */
+        .tools-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tool-tag {
+            background: #f1f5f9;
+            color: #334155;
+            padding: 0.4rem 0.85rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Action Buttons */
+        .detail-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .btn-primary {
+            background: #4f6af6;
+            color: white;
+            border: none;
+            padding: 0.85rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: #3b55e6;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 106, 246, 0.35);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #475569;
+            border: 2px solid #e2e8f0;
+            padding: 0.85rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: #4f6af6;
+            color: #4f6af6;
+            transform: translateY(-2px);
+        }
+
+        /* Loading */
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            gap: 1.5rem;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid #4f6af6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-text {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .detail-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .match-badge {
+                align-self: flex-start;
+            }
+
+            .detail-title {
+                font-size: 1.75rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-card {
+                padding: 1.5rem;
+            }
+
+            .detail-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Back Button -->
+        <a href="results.html" class="back-btn">
+            ← Back to Results
+        </a>
+
+        <!-- Loading State -->
+        <div class="loading-container" id="loadingState">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Loading career details...</p>
+        </div>
+
+        <!-- Detail Card (hidden initially) -->
+        <div class="detail-card" id="detailCard" style="display: none;">
+            <!-- Header -->
+            <div class="detail-header">
+                <div class="detail-header-left">
+                    <p class="detail-subtitle">Career Details</p>
+                    <h1 class="detail-title" id="careerTitle">Loading...</h1>
+                    <p class="detail-category" id="careerCategory">Category</p>
+                </div>
+                <div class="match-badge">
+                    <span class="match-badge-percent" id="matchPercent">--</span>
+                    <span class="match-badge-label">Match</span>
+                </div>
+            </div>
+
+            <!-- Info Grid -->
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Salary Range</div>
+                    <div class="info-value" id="salaryRange">--</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Work Type</div>
+                    <div class="info-value" id="workType">--</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Growth Outlook</div>
+                    <div class="info-value" id="growthOutlook">--</div>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="section">
+                <h3 class="section-title">
+                    <span class="section-icon">📋</span> About this Career
+                </h3>
+                <p class="section-text" id="careerDescription">Loading...</p>
+            </div>
+
+            <!-- Education Required -->
+            <div class="section">
+                <h3 class="section-title">
+                    <span class="section-icon">🎓</span> Education Required
+                </h3>
+                <p class="section-text" id="educationRequired">Loading...</p>
+            </div>
+
+            <!-- Required Skills -->
+            <div class="section">
+                <h3 class="section-title">
+                    <span class="section-icon">⚡</span> Required Skills
+                </h3>
+                <div class="skills-container" id="requiredSkills"></div>
+            </div>
+
+            <!-- Job Responsibilities -->
+            <div class="section">
+                <h3 class="section-title">
+                    <span class="section-icon">📌</span> Key Responsibilities
+                </h3>
+                <ul class="responsibilities-list" id="responsibilities"></ul>
+            </div>
+
+            <!-- Tools & Technologies -->
+            <div class="section">
+                <h3 class="section-title">
+                    <span class="section-icon">🛠</span> Tools & Technologies
+                </h3>
+                <div class="tools-container" id="toolsTech"></div>
+            </div>
+
+            <!-- Match Reason -->
+            <div class="section" id="matchReasonSection" style="display: none;">
+                <h3 class="section-title">
+                    <span class="section-icon">🎯</span> Why This Career Matches You
+                </h3>
+                <p class="section-text" id="matchReason">--</p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="detail-actions">
+                <a href="results.html" class="btn-primary">
+                    ← Back to Results
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Check auth
+            if (typeof checkAuth === 'function') {
+                const isLoggedIn = await checkAuth();
+                if (!isLoggedIn) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+            }
+
+            // Get career_id from URL params
+            const urlParams = new URLSearchParams(window.location.search);
+            const careerId = urlParams.get('id');
+
+            if (!careerId) {
+                showError('No career specified. Redirecting to results...');
+                setTimeout(() => window.location.href = 'results.html', 2000);
+                return;
+            }
+
+            // Fetch career details from API
+            try {
+                const response = await fetch(`../backend/api/get_career_details.php?career_id=${careerId}`);
+                const data = await response.json();
+
+                if (data.success && data.career) {
+                    renderDetails(data.career);
+                } else {
+                    showError(data.message || 'Career not found');
+                }
+            } catch (error) {
+                console.error('Error fetching career details:', error);
+                // Fallback: try to get from localStorage recommendations
+                const recommendations = JSON.parse(localStorage.getItem('career_recommendations') || '[]');
+                const career = recommendations.find(r => r.id == careerId);
+                if (career) {
+                    renderFromLocal(career);
+                } else {
+                    showError('Unable to load career details. Please try again.');
+                }
+            }
+        });
+
+        function formatSalary(amount) {
+            return '$' + amount.toLocaleString();
+        }
+
+        function capitalizeFirst(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        function renderDetails(career) {
+            document.getElementById('careerTitle').textContent = career.title;
+            document.getElementById('careerCategory').textContent = capitalizeFirst(career.category.replace('-', ' '));
+            document.getElementById('salaryRange').textContent = `${formatSalary(parseInt(career.salary_min))} - ${formatSalary(parseInt(career.salary_max))}`;
+            document.getElementById('workType').textContent = capitalizeFirst(career.work_type);
+            document.getElementById('growthOutlook').textContent = career.growth_outlook || 'Strong';
+            document.getElementById('careerDescription').textContent = career.description;
+            document.getElementById('educationRequired').textContent = career.education_required || 'Bachelor\'s Degree';
+
+            // Match percentage
+            if (career.match_percentage) {
+                document.getElementById('matchPercent').textContent = career.match_percentage + '%';
+            } else {
+                document.getElementById('matchPercent').textContent = '--';
+            }
+
+            // Match reason
+            if (career.match_reason) {
+                document.getElementById('matchReason').textContent = career.match_reason;
+                document.getElementById('matchReasonSection').style.display = 'block';
+            }
+
+            // Required skills
+            const skillsContainer = document.getElementById('requiredSkills');
+            const skills = career.required_skills.split(',');
+            skills.forEach(skill => {
+                const tag = document.createElement('span');
+                tag.className = 'skill-tag';
+                tag.textContent = skill.trim();
+                skillsContainer.appendChild(tag);
+            });
+
+            // Job responsibilities
+            const respList = document.getElementById('responsibilities');
+            if (career.job_responsibilities) {
+                const responsibilities = career.job_responsibilities.split('\n').filter(r => r.trim());
+                responsibilities.forEach(resp => {
+                    const li = document.createElement('li');
+                    li.textContent = resp.trim();
+                    respList.appendChild(li);
+                });
+            } else {
+                respList.innerHTML = '<li>Details not available</li>';
+            }
+
+            // Tools & Technologies
+            const toolsContainer = document.getElementById('toolsTech');
+            if (career.tools_technologies) {
+                const tools = career.tools_technologies.split(',');
+                tools.forEach(tool => {
+                    const tag = document.createElement('span');
+                    tag.className = 'tool-tag';
+                    tag.textContent = tool.trim();
+                    toolsContainer.appendChild(tag);
+                });
+            } else {
+                toolsContainer.innerHTML = '<span class="tool-tag">Various tools</span>';
+            }
+
+            // Update page title
+            document.title = `${career.title} - Career Details`;
+
+            // Show card, hide loading
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('detailCard').style.display = 'block';
+        }
+
+        function renderFromLocal(career) {
+            // Render with limited data from localStorage
+            const fakeFullCareer = {
+                ...career,
+                category: career.category || 'general',
+                education_required: 'Bachelor\'s Degree or equivalent',
+                job_responsibilities: 'Details available after full data load',
+                tools_technologies: career.required_skills
+            };
+            renderDetails(fakeFullCareer);
+        }
+
+        function showError(message) {
+            document.getElementById('loadingState').innerHTML = `
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">⚠️</div>
+                    <h2 style="color: #0f172a; margin-bottom: 0.5rem;">Error</h2>
+                    <p style="color: #64748b; margin-bottom: 1.5rem;">${message}</p>
+                    <a href="results.html" style="color: #4f6af6; font-weight: 600; text-decoration: none;">← Back to Results</a>
+                </div>
+            `;
+        }
+    </script>
+</body>
+
+</html>
