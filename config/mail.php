@@ -12,8 +12,8 @@
 
 define('MAIL_HOST', 'smtp.gmail.com');
 define('MAIL_PORT', 587);
-define('MAIL_USERNAME', 'sanjaygawade0203@gmail.com');      // Your Gmail address
-define('MAIL_PASSWORD', 'ktptciddygfdahsd');          // Your Gmail App Password (16 chars)
-define('MAIL_FROM_EMAIL', 'sanjaygawade0203@gmail.com');     // Same as MAIL_USERNAME
+define('MAIL_USERNAME', 'mhadeshwarnikita@gmail.com');      // Your Gmail address
+define('MAIL_PASSWORD', 'wftknabqhxbcksbf');          // Your Gmail App Password (16 chars)
+define('MAIL_FROM_EMAIL', 'mhadeshwarnikita@gmail.com');     // Same as MAIL_USERNAME
 define('MAIL_FROM_NAME', 'Career Guide');
 ?>
