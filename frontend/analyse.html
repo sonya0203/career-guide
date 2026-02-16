@@ -865,15 +865,18 @@
                     userNameEl.textContent = user.full_name || 'Candidate';
                 }
 
-                // Try to load additional info from localStorage (if saved during qualification step)
-                const quals = localStorage.getItem('qualification_data');
-                if (quals) {
+                // Fetch qualification info from API
+                if (user && user.id) {
                     try {
-                        const qData = JSON.parse(quals);
-                        if (qData.highest_qualification) userQualEl.textContent = qData.highest_qualification;
-                        // Determine topic based on stream or skills? For now defaults to General
-                        if (qData.stream) userTopicEl.textContent = qData.stream;
-                    } catch (e) { console.log('Error parsing stats', e); }
+                        const qualResponse = await fetch(`../backend/api/get_qualification.php?user_id=${user.id}`);
+                        const qualData = await qualResponse.json();
+                        if (qualData.success && qualData.data) {
+                            if (qualData.data.full_name) userNameEl.textContent = qualData.data.full_name;
+                            else if (qualData.data.user_name) userNameEl.textContent = qualData.data.user_name;
+                            if (qualData.data.highest_qualification) userQualEl.textContent = qualData.data.highest_qualification;
+                            if (qualData.data.stream) userTopicEl.textContent = qualData.data.stream;
+                        }
+                    } catch (e) { console.log('Error fetching qualification data', e); }
                 }
             }
 
