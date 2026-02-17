@@ -257,6 +257,223 @@
             }
         }
 
+        /* ===== Quiz Results Section ===== */
+        .quiz-section {
+            margin-top: 1.5rem;
+        }
+
+        .quiz-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .quiz-card-header {
+            background: linear-gradient(135deg, #38b2ac, #2c7a7b);
+            color: white;
+            padding: 1.25rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* Top Match */
+        .top-match {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #ebf8ff, #e6fffa);
+            border-bottom: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .top-match:hover {
+            background: linear-gradient(135deg, #d6eef8, #d0f5ee);
+        }
+
+        .top-match-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #2c7a7b;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .top-match-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-match-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .top-match-sub {
+            font-size: 0.82rem;
+            color: #718096;
+            margin-top: 2px;
+        }
+
+        .match-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+            border-radius: 12px;
+            padding: 0.6rem 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            min-width: 70px;
+        }
+
+        .match-badge-pct {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #2c7a7b;
+            line-height: 1;
+        }
+
+        .match-badge-txt {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #a0aec0;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .click-hint {
+            font-size: 0.75rem;
+            color: #a0aec0;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Match Reason Expandable */
+        .match-reason {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            background: #f7fafc;
+            padding: 0 1.5rem;
+        }
+
+        .match-reason.expanded {
+            max-height: 300px;
+            padding: 1rem 1.5rem;
+        }
+
+        .match-reason-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #667eea;
+            margin-bottom: 6px;
+        }
+
+        .match-reason-text {
+            font-size: 0.9rem;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* Other results list */
+        .result-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #f0f2f5;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-item:hover {
+            background: #f7fafc;
+        }
+
+        .result-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .result-rank {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #edf2f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #4a5568;
+            flex-shrink: 0;
+        }
+
+        .result-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .result-pct {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #38b2ac;
+            white-space: nowrap;
+        }
+
+        .result-reason {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            background: #f7fafc;
+            padding: 0 1.5rem;
+            border-bottom: 1px solid #f0f2f5;
+        }
+
+        .result-reason.expanded {
+            max-height: 300px;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .no-quiz-card {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+        }
+
+        .no-quiz-card .nq-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .no-quiz-card h3 {
+            font-size: 1rem;
+            color: #4a5568;
+            margin-bottom: 0.25rem;
+        }
+
+        .no-quiz-card p {
+            color: #a0aec0;
+            font-size: 0.85rem;
+        }
+
         @media (max-width: 640px) {
             .qual-grid {
                 grid-template-columns: 1fr;
@@ -269,6 +486,12 @@
             .page-header {
                 flex-direction: column;
                 text-align: center;
+            }
+
+            .top-match-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
             }
         }
     </style>
@@ -300,10 +523,13 @@
                 <br>Loading qualification details...
             </div>
         </div>
+
+        <div id="quizContent" class="quiz-section" style="display: none;"></div>
     </div>
 
     <script>
         const API_URL = 'http://localhost/career-guide/backend/api/get_qualification.php';
+        const RECOMMENDATIONS_API_URL = 'http://localhost/career-guide/backend/api/get_user_recommendations.php';
 
         async function loadQualification() {
             const params = new URLSearchParams(window.location.search);
@@ -405,6 +631,96 @@
                         <p>Unable to connect to the server.</p>
                     </div>`;
             }
+
+            // Also load quiz results
+            await loadQuizResults(userId);
+        }
+
+        async function loadQuizResults(userId) {
+            const quizDiv = document.getElementById('quizContent');
+            try {
+                const res = await fetch(`${RECOMMENDATIONS_API_URL}?user_id=${userId}`);
+                const json = await res.json();
+
+                if (!json.success || !json.data || json.data.length === 0) {
+                    quizDiv.innerHTML =
+                        `<div class="quiz-card">
+                            <div class="quiz-card-header">🎯 Quiz Results</div>
+                            <div class="no-quiz-card">
+                                <div class="nq-icon">📝</div>
+                                <h3>No Quiz Results Yet</h3>
+                                <p>This user has not taken the career quiz.</p>
+                            </div>
+                        </div>`;
+                    quizDiv.style.display = 'block';
+                    return;
+                }
+
+                const recs = json.data; // already sorted by match_percentage DESC
+                const top = recs[0];
+
+                let html = `<div class="quiz-card">
+                    <div class="quiz-card-header">🎯 Quiz Results — Career Recommendations</div>
+                    <!-- Top Match -->
+                    <div class="top-match" onclick="toggleReason('top-reason')">
+                        <div class="top-match-label">⭐ Best Match</div>
+                        <div class="top-match-content">
+                            <div>
+                                <div class="top-match-title">${top.title}</div>
+                                <div class="top-match-sub">${capitalizeFirst(top.category.replace('-', ' '))} · ${capitalizeFirst(top.work_type)}</div>
+                            </div>
+                            <div class="match-badge">
+                                <span class="match-badge-pct">${top.match_percentage}%</span>
+                                <span class="match-badge-txt">Match</span>
+                            </div>
+                        </div>
+                        <div class="click-hint">▶ Click to see why this matched</div>
+                    </div>
+                    <div class="match-reason" id="top-reason">
+                        <div class="match-reason-label">🎯 Why This Career Matched</div>
+                        <div class="match-reason-text">${top.match_reason || 'No detailed reason available.'}</div>
+                    </div>`;
+
+                // Other results
+                recs.forEach((rec, i) => {
+                    if (i === 0) return; // skip top, already shown
+                    html += `
+                    <div class="result-item" onclick="toggleReason('reason-${i}')">
+                        <div class="result-info">
+                            <div class="result-rank">${i + 1}</div>
+                            <div>
+                                <div class="result-title">${rec.title}</div>
+                                <div class="top-match-sub">${capitalizeFirst(rec.category.replace('-', ' '))}</div>
+                            </div>
+                        </div>
+                        <div class="result-pct">${rec.match_percentage}%</div>
+                    </div>
+                    <div class="result-reason" id="reason-${i}">
+                        <div class="match-reason-label">🎯 Why This Career Matched</div>
+                        <div class="match-reason-text">${rec.match_reason || 'No detailed reason available.'}</div>
+                    </div>`;
+                });
+
+                html += `</div>`;
+                quizDiv.innerHTML = html;
+                quizDiv.style.display = 'block';
+
+            } catch (err) {
+                console.error('Quiz results error:', err);
+                // Silently fail — quiz section just stays hidden
+            }
+        }
+
+        function toggleReason(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.classList.toggle('expanded');
+            }
+        }
+
+        function capitalizeFirst(str) {
+            if (!str) return '';
+            return str.charAt(0).toUpperCase() + str.slice(1);
         }
 
         document.addEventListener('DOMContentLoaded', loadQualification);
