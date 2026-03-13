@@ -25,6 +25,14 @@ CREATE TABLE IF NOT EXISTS careers (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- =============================================
+-- Note: career_questions table also exists with columns:
+-- id, category, qualification, interest, question_text,
+-- option_a, option_b, option_c, option_d, correct_option, created_at
+-- See alter_career_questions.sql for migration to add
+-- qualification and interest columns
+-- =============================================
+
+-- =============================================
 -- 2. User Test Results Table
 -- =============================================
 CREATE TABLE IF NOT EXISTS user_test_results (
