@@ -24,43 +24,8 @@ CREATE TABLE IF NOT EXISTS careers (
     INDEX idx_category (category)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- =============================================
--- Note: career_questions table also exists with columns:
--- id, category, qualification, interest, question_text,
--- option_a, option_b, option_c, option_d, correct_option, created_at
--- See alter_career_questions.sql for migration to add
--- qualification and interest columns
--- =============================================
+-- INSERT DATA INTO careers TABLE
 
--- =============================================
--- 2. User Test Results Table
--- =============================================
-CREATE TABLE IF NOT EXISTS user_test_results (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    answers_json TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_user_id (user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- =============================================
--- 3. User Career Recommendations Table
--- =============================================
-CREATE TABLE IF NOT EXISTS user_career_recommendations (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    test_result_id INT NOT NULL,
-    career_id INT NOT NULL,
-    match_percentage INT NOT NULL DEFAULT 0,
-    match_reason TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_user_id (user_id),
-    INDEX idx_test_result (test_result_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- =============================================
--- 4. Seed Careers Data
--- =============================================
 INSERT INTO careers (title, description, match_description, required_skills, salary_min, salary_max, category, work_type, growth_outlook, education_required, job_responsibilities, tools_technologies) VALUES
 
 -- Computer Science / IT
@@ -98,3 +63,7 @@ INSERT INTO careers (title, description, match_description, required_skills, sal
 ('Healthcare Administrator', 'Manage healthcare facilities, coordinate services, and ensure efficient operations within hospitals and clinics.', 'Matches your organizational and management skills.', 'Healthcare Management,Leadership,Communication,Budgeting,Compliance', 60000, 90000, 'medical', 'onsite', 'Strong – 28% growth expected', 'Master''s in Healthcare Administration or related field', 'Manage daily hospital operations\nCoordinate medical staff and services\nEnsure regulatory compliance\nManage facility budgets\nImprove patient care quality', 'EHR Systems,SAP,Microsoft Office,Project Management Tools'),
 
 ('Pharmacist', 'Dispense medications, counsel patients, and ensure safe use of pharmaceutical products.', 'Matches your medical knowledge and attention to detail.', 'Pharmacology,Patient Care,Drug Interactions,Communication,Attention to Detail', 80000, 120000, 'medical', 'onsite', 'Moderate – 5% growth expected', 'Doctor of Pharmacy (Pharm.D.)', 'Dispense prescription medications\nCounsel patients on drug usage\nMonitor drug interactions\nManage pharmacy inventory\nCollaborate with healthcare providers', 'Pharmacy Management Systems,Drug Databases,EHR Systems');
+
+
+
+
